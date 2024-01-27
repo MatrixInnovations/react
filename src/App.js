@@ -39,9 +39,10 @@ function App() {
             element={route.element}
           />
         ))}
+       <Route path="*" element={<Home />} />
       </Routes>
     </Router>
   );
-}
+}a
 
 export default App;
