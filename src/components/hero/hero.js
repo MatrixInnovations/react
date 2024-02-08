@@ -6,7 +6,7 @@ import './hero.css';
 const Hero = () => {
   return (
     <div className="video-background">
-      <video id="background-video" loop autoPlay className="background-tint" muted>
+      <video id="background-video" loop autoPlay className="background-tint"  muted>
         <source src={Heart} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
