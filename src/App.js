@@ -1,48 +1,63 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { Component } from 'react';
 import './App.css';
-import Navbar from './components/navbar/navbar';
-import Hero from './components/hero/hero';
-import Button from './components/button/button';
 
-// Create pages for each route
-import Home from './pages/home';
-import Contact from './pages/contact';
+// Import page components
+import HomePage from './pages/HomePage';
+import PersonalizedProgramPage from './pages/PersonalizedProgramPage';
+import CoachingPage from './pages/CoachingPage';
+import ContactPage from './pages/ContactPage';
 
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      route: 'home' // Initial route is set to 'home'
+    };
+  }
 
-const routes = [
-  {
-    path: "/",
-    element: (
-      <div className="video-background">
-        <Navbar />
-        <Hero />
-        <Button />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+  onRouteChange = (route) => {
+    this.setState({ route });
+  }
+
+  render() {
+    const { route } = this.state;
+
+    // Render different components based on the current route
+    let componentToRender;
+    switch (route) {
+      case 'home':
+        componentToRender = <HomePage />;
+        break;
+      case 'personalizedProgram':
+        componentToRender = <PersonalizedProgramPage />;
+        break;
+      case 'coaching':
+        componentToRender = <CoachingPage />;
+        break;
+      case 'contact':
+        componentToRender = <ContactPage />;
+        break;
+      default:
+        componentToRender = <HomePage />;
+    }
+
+    return (
+      <div>
+        {/* Navbar with menu items */}
+        <nav>
+          <ul>
+            <li onClick={() => this.onRouteChange('home')}>Home</li>
+            <li onClick={() => this.onRouteChange('personalizedProgram')}>Personalized Program</li>
+            <li onClick={() => this.onRouteChange('coaching')}>1-1 Coaching</li>
+            <li onClick={() => this.onRouteChange('contact')}>Contact</li>
+          </ul>
+        </nav>
+        
+        {/* Render the selected component */}
+        {componentToRender}
       </div>
-    ),
-  },
-];
-
-// App component 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        {routes.map((route, index) => (
-          <Route
-            key={index}
-            path={route.path}
-            element={route.element}
-          />
-        ))}
-       <Route path="*" element={<Home />} />
-      </Routes>
-    </Router>
-  );
-}a
+    );
+  }
+}
 
 export default App;
