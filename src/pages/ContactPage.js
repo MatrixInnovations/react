@@ -6,10 +6,11 @@ import './ContactPage.css';
 function ContactPage() {
   return (
     <div style={{ 
-      backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0.1)), url(${SmilesContact})`, 
+      backgroundImage: `url(${SmilesContact})`, 
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
       backgroundPosition: "top center",
+      filter: "brightness(50%)",
       zIndex: -1,
       position: 'absolute',
       width: '100%',
